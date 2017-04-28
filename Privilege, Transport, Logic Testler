@@ -1,0 +1,90 @@
+Privilege
+Sıklıkla logic, priv, auth bug’lar bulanıktır. 
+ 
+User priv’leri test etmek:
+	· Admin power’a sahiptir
+	· Peon’un hiçbirşeyi yoktur
+	· Peon yalnızca admin için anlam verilen foksiyonu kullanabilir
+	1. Belirli kullanıcı tipleri için restrict edilmiş site fonksiyonelitelerini bul 
+	2. Bu fonksiyonlara farklı/daha düşük yetkili roller ile erişmeye çalış
+	3. Daha düşük yetkili kullanıcı olarak hassas bilgilere sahip view’leri direkt olarak browse etmeye çalış 
+ 
+Tool: Autorize 
+https://github.com/Quitten/Autorize
+Burp Store’da da var. 
+ 
+Yaygın Fonksiyonlar ve View’ler:
+	· Kullanıcı ekleme fonksiyonu
+	· Kullanıcı silme fonksiyonu
+	· Proje/kampanya/vb. başlatma/oluşturma fonksiyonları 
+	· Müşteri analitik view’leri 
+	· Payment processing view’leri 
+	· Kişisel bilgilerin (PII) olduğu herhangi view’ler
+ 
+Autorize Nasıl Çalışıyor?:
+	1. Yüksek yetkili kullanıcı ile browse et
+	2. Daha düşük yetkili kullanıcı ile login ol
+	3. Burp plugin’i re-request yaparak daha düşük yetkinin yüksek yetkiliye erişip erişemeyeceğini test eder
+ 
+Insecure Direct Object References (IDOR)
+IDOR’lar bounty’lerde yaygındır ve scanner’lar ile tespit edilmesi zordur. 
+ 
+IDOR Test Ederken: 
+Önce tüm UID’leri bul
+	1. Arttır
+	2. Azalt 
+	3. Negatif değerler kullan
+	4. Diğer UID’nin yerine koyarak hassas fonksiyonlara erişmeye çalış
+		a. Parola değiştir
+		b. Parolamı unuttum
+		c. Admin only fonksiyonları test et
+ 
+Yaygın Fonksiyonlar, View’ler ya da Dosyalar:
+	· CSRF tablosundaki herşey, çapraz hesap deneme saldırıları
+	· Sub: UID’ler, user hash’leri ya da e-mail’ler
+	· Public olmayan image’ler
+	· Receipt’ler (makbuzlar, dekontlar)
+	· Private flag’ler (pdf’ler, ++)
+	· Shipping bilgileri & sipariş bilgileri
+	· Sending / Deleting mesajları 
+ 
+Transport 
+Güvenlik endişesi olan birçok sitede HTTPs uygulanır. Ancak site içinde her yerde uygulanıp uygulanmadığını test etmeliyiz. Çoğu zaman unutulan bir şeyler çıkar. 
+ 
+Örnekler:
+	· HTTP üzerinden transport edilen hassas image’ler
+	· HTTP üzerinden Session data anatilikleri / kişisel bilgilerin sızıntısı 
+ 
+Tool: ForceSSL
+https://github.com/arvinddoraiswamy/mywebappscripts/tree/master/ForceSSL
+ 
+Test Adımları: 
+	1. Uygulamayı Burp’te spider et ve site map oluştur. 
+	2. Kullanmak istediğin site’leri/directory’leri seçip CTRL+click yap; Burp’te sağ-tıkla ve “Copy all URLs” seç.
+	3. Script ile aynı dizinde http_urls isimli yeni bir dosya oluştur. 
+	4. Kopyaladığın URL’leri bu dosya içine yapıştır ve save et. 
+	5. Force_http_req_threaded.py script’ini çalıştır. 
+	6. URLs isimli bir dizin oluştur. https_urls dosyasını URLs dizinine kopyala ve herbiri 200 satır olacak şekilde birden fazla dosyaya ayır.
+	7. Her bir dosya processed edilir ve her bir https URL artık http üzerinden request edilir.
+	8. Bu işlemin sonucu script’in olduğu ddizindeki report isimli dosyaya yazılır. 
+ 
+Logic 
+Mantıksal açıkları zordur ve çoğunlukla manuel tespit edilir. 
+ 
+Örnekler:
+	· Hash’li parametrelerin yerine koymak
+	· Adım manipülasyonu
+	· Miktarlarda negatif değer kullanmak
+	· Authentication bypass etmek 
+	· Application level DoS
+	· Timing saldırıları
+	
+A Simple Logic Flaw
+
+An online cute dog contest, the dog with the best average of likes wins.
+	1. Anyone can register and take part.
+	2. Once a dog is registered, people can start liking or disliking that dog.
+	3. Everyone dislikes each other's dogs to win the contest. 
+	4. Registration and voting gets closed 5 minutes before the results are announced. 
+	
+What is the logic flaw over here? 
