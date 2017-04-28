@@ -1,0 +1,73 @@
+LFI (Local File Inclusion)
+ 
+Ana Fikir: Server dosya sistemi ile etkileşim yapıyor olabilir mi? 
+ 
+Tool: Liffy 
+https://github.com/hvqzao/liffy
+ 
+Tool/Fuzzing-DB: SecLists
+https://github.com/danielmiessler/SecLists
+SeclLists / Fuzzing / JHADDIX_LFI.txt
+ 
+Yaygın Parametreler ya da Injection Point’ler:
+	· file=
+	· location=
+	· locale=
+	· path=
+	· display=
+	· load=
+	· read=
+	· retrieve=
+ 
+Malicious File Upload 
+Bu tarz testlerde önemli bir saldırı vektörüdür. 
+File upload fonksiyonun yeterince güvenli olması için birçok korumayı sağlıyor olması lazım. 
+ 
+Saldırı Testleri:
+	· Code exec ya da web shell elde edebilmek için beklenmeyen dosya formatlarında upload edip edemediğine bak (swf, html, php, php3, aspx, ++)  
+	· Aynı dosya tiplerinde XSS execute edip edemediğine bak. Image’larda da olabilir, test et. 
+	· Polyglot’ları kullanarak security zone’larını bypass etmeye ve hedef sitede malware store etmeye çalış
+ 
+Bypass Teknikleri: 
+	· Content type spoofing
+	· Extension hilesi
+	· BU sunumdaki diğer süper teknikler https://www.nds.rub.de/media/attachments/files/2012/11/File-in-the-hole.pdf
+ 
+Diğer alakalı kaynaklar:
+@dan_crowley 's sunumu: http://www.securitytube.net/video/12381
+@angealbertini ‘nin araştırması: https://code.google.com/archive/p/corkami/
+ 
+RFI (Remote File Include) ve Redirect
+İçerisinde farklı web adresi olan parametreleri ara. LFI’daki aynı parametreler RFI için de geçerlidir. 
+ 
+Yaygın Blacklist Bypass’ları:
+	· Escape "/" with "\/" ya da "//" with "\/\/\"
+	· "//" yerine single "/" dene
+	· http i.e.  ‘yi remove et "continue=//google.com"
+	· "/\/\", "|/", "/%09/"
+	· Encode, slashes
+	·  "./" CHANGE TO "..//"
+	· "../" CHANGE TO "….//"
+	· "/" CHANGE TO "//"
+ 
+Redirections Yaygın Parametreler ya da Injection Point’ler:
+	· dest=
+	· continue=
+	· redirect=
+	· url= (or anything with "url" in it)
+	· uri= (same as above)
+	· window=
+	· next=
+ 
+RFI Yaygın Parametreler ya da Injection Point’ler:
+	· file=
+	· folder=
+	· path=
+	· style=
+	· template=
+	· php_path=
+	· doc=
+	· document=
+	· root=
+	· pg=
+	· pdf=
