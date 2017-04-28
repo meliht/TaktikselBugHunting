@@ -1,0 +1,114 @@
+Ana Fikir: Sayfa store edilmiş bir data’yı çağırıyor gibi duruyor mu? 
+ 
+Polyglot’lar:
+ 
+	i. Single quote context, double quote contex ve "straight into query context ‘de çalışır! (by Mathias Karlsson)
+		SLEEP(1) /*' or SLEEP(1) or '" or SLEEP(1) or "*/
+		 
+	ii. Blind olanı baskındır, Error-based olanı alışılmadıktır. 
+		'%2Bbenchmark(3200,SHA1(1))%2B' '+BENCHMARK(40000000,SHA1(1337))+'
+ 
+Diğer SQLi Testleri:
+ 
+Tool/Fuzzing-DB: SecLists
+https://github.com/danielmiessler/SecLists
+Burada kullanabileceğimiz büyük bir fuzzlist database’i var. 
+ 
+Tool: SQLmap 
+https://github.com/sqlmapproject/sqlmap 
+SQLi’nın kralıdır. Aşağıdaki tipleri dikkate alın. 
+	· -l kullanarak Burp log dosyası parse edebiliriz. 
+	· Blacklist’leri atlatmak için Tamper Script’ler kullanabiliriz. 
+	· SQLiPy Burp Plugin’i kullanarak SQLmap’i Burp Suite ile daha hızlı ve efektif kullanabiliriz. 
+ 
+Not: Web servislerde çokça SQLi çıkar. 
+ 
+En Yaygın Injection Point’ler:
+	· ID
+	· Currency değerleri
+	· Item number değerleri
+	· Sorting parametreleri (order, sort, gibi) 
+	· JSON ve XML değerleri
+	· Cookie değerleri 
+	· Custom header’lar (CDN ya da WAF ile olası engtegrasyonlara bakılabilir)
+	· REST-based servisler 
+ 
+Tool/Plugin: SQLmap SQLiPy 
+https://github.com/codewatchorg/sqlipy 
+Burp Store’da da var. Çalıştırmak için request üzerine sağ tıklayıp, SQLiPy Scan deriz. 
+ 
+Tool: CO2 
+http://burpco2.com/ 
+Burp Store'da da var. Burp Suite extension. 
+
+Tool: Reflected Parameters
+https://portswigger.net/bappstore/ShowBappDetails.aspx?uuid=8e8f6bb313db46ba9e0a7539d3726651 
+Burp Store'da da var. Burp Suite extension. 
+
+--------------------------------
+Tool: SQLMapper
+
+SQLmap All Tamper Scripts
+
+--tamper=apostrophemask,apostrophenullencode,appendnullbyte, base64encode,between,bluecoat,chardoubleencode,charencode,
+charunicodeencode,concat2concatws,equaltolike,greatest,
+halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,
+modsecurityzeroversioned,multiplespaces,nonrecursivereplacement,
+percentage,randomcase,randomcomments,securesphere,space2comment,
+space2dash,space2hash,space2morehash,space2mssqlblank,
+space2mssqlhash,space2mysqlblank,space2mysqldash,space2plus,
+space2randomblank,sp_password,unionalltounion,unmagicquotes,
+versionedkeywords,versionedmorekeywords
+
+https://forum.bugcrowd.com/t/sqlmap-tamper-scripts-sql-injection-and-waf-bypass/423
+
+SQLmap Targeted Tamper Scripts
+
+General: tamper=apostrophemask,apostrophenullencode,base64encode,between,chardoubleencode,charencode,
+charunicodeencode,equaltolike,greatest,ifnull2ifisnull,multiplespaces,nonrecursivereplacement,percentage,
+randomcase,securesphere,space2comment,space2plus,space2randomblank,unionalltounion,unmagicquotes
+
+MSSQL:
+tamper=between,charencode,charunicodeencode,equaltolike,greatest,multiplespaces,nonrecursivereplacement,
+percentage,randomcase,securesphere,sp_password,space2comment,space2dash,space2mssqlblank,space2mysqldash,
+space2plus,space2randomblank,unionalltounion,unmagicquotes
+
+MySQL:
+tamper=between,bluecoat,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,
+halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,
+nonrecursivereplacement,percentage,randomcase,securesphere,space2comment,space2hash,space2morehash,
+space2mysqldash,space2plus,space2randomblank,unionalltounion,unmagicquotes,versionedkeywords,
+versionedmorekeywords,xforwardedfor
+--------------------------------
+En İyi SQL Injection Kaynakları: 
+ 
+mySQL
+PentestMonkey's mySQL injection cheat sheet
+ 
+Reiners mySQL injection Filter Evasion Cheatsheet
+MSSQL
+EvilSQL's Error/Union/Blind MSSQL Cheatsheet
+ 
+PentestMonkey's MSSQL SQLi injection Cheatsheet
+ORACLE
+PentestMonkey's Oracle SQLi Cheatsheet
+POSTGRESQL
+PentestMonkey's Postgres SQLi Cheatsheet
+Others
+Access SQLi Cheatsheet
+ 
+PentestMonkey's Ingress SQL Injection Cheat Sheet
+ 
+PentestMonkey's DB2 Injection Cheat Sheet
+ 
+PentestMonkey's Informix SQL Injectin  Cheat Sheet
+ 
+SQLite3 Injection Cheat Sheet
+ 
+Ruby on Rails (Active Record) SQL Injection Guide
+ 
+-----------------------------------
+ 
+Regular Metodolojiler İçin Referanslar: 
+	· The web application hacker's handbook 
+	· OWASP testing guide 
