@@ -1,0 +1,20 @@
+Core Idea: Is there any external resource acceseed by any parameter which could be controlled by us. 
+
+Polyglot: www.yoursite.com/your_resource
+
+Simply capture the IP from which your resource is accessed. There we start, once we get the IP and we confirm that the resource is accessed by server-side, we are uo with our game for SSRF. 
+
+SSRF Tools - Testing & Exploitation 
+
+Tools: 
+Burp Scanner, other few scanners in market…
+
+Testing:
+As we know SSRF does not need automated fuzzing, because once we confirm a resource is accessible from the Server-Side we can confirm SSRF/XFPA. 
+
+Exploitation:
+Once we have confirmed SSRF, we can move on to further exploitation which includes the following but not limited to:
+	1. Internal Server/Port Scan
+	2. Access to File System
+	3. SSRF via 306 Redirects
+	4. Exploitation via other known protocols
