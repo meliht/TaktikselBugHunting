@@ -1,0 +1,33 @@
+Az Sürede Etkili Discovery Yapmak İçin Adımlar: 
+	1. *site.com scope’unu kullan 
+	2. Domain’leri Google (ve diğer arama motorları) üzerinden bul -> test ortamları için geçerli değil
+	3. Recon-ng gibi araçlar ile otomatize edilebilir 
+	4. Tüm domain’lerdeki belirsiz web server’lar ve servisler için port scan yap
+	5. Acqusition’ları ve bounty acqusition’ları bul -> BB’ler için geçerli
+	6. Google’ın 6 ay kuralı var 
+	7. Fonksiyonellik ve design değişiklikleri
+	8. Mobile website’leri 
+	9. Yeni mobil uygulama versiyonları 
+ 
+Tool: Recon-ng script’i (enumall.sh) 
+https://github.com/jhaddix/domain 
+	· Recon-ng için dinamik kaynak oluşturup/kullanan subdomain enumeration script’idir. 
+	· Sadece 1 modul API’ye ihtiyaç duyuyor (/api/google_site), wiki’de instruction’ları var. Ya da bu modülü comment out edebilirsiniz. 
+	· Subdomain’leri tespit etmek için Google/Bing/Baidu scaping, Netcraft ve Bruteforce teknikleri kullanır. 
+	· Kullanımı: # ./enumall.sh paypal.com 
+ 
+LMGTFY Teknikleri (let me Google that for you)
+	· Google hacking teknikleri: Site:paypal.com –www.paypal.com –www.sandbox 
+	· Wikipedia’dan örnek olarak Facebook’un merger ya da acquisition’larına ulaşılabilir. 
+	· Bug bounty geçmişlerine bakılabilir. Örn: https://www.facebook.com/notes/phwd/facebook-bug-bounties/707217202701640 
+ 
+Port Taraması: 
+Port taraması sadece Network Pentest için değildir. 
+Yeni bulunan hedef için full port taraması ile birçok şey bulunabilir:
+	· Ayrı web uygulamaları
+	· Yabancı servisler 
+	· Örn: Daha önce Facebook authentication’sız erişilebilen Jenkins Script console’u unutmuş. 
+	· Örn: IIS.net MS12_020 ile RDP zafiyeti varmış. 
+ 
+Tavsiye Edilen Tarama Komutu: ^ syn scan, OS + service fingerprint, no ping, all ports, http titles
+# nmap -sS -A -Pn --script=http-title dontscanme.bro
