@@ -1,0 +1,18 @@
+Authentication Testleri:
+
+Daha çok mantıksaldır, privilege ve transport bölümlerinde olur. 
+	· User/pass discrepancy (tutarsızlık) açığı
+	· Registration page harvesting
+	· Login page harvesting
+	· Password reset page harvesting
+	· No account lockout
+	· Weak password policy
+	· Account update’leri için password’a gerek duyulmaması 
+	· Password reset tokens (expire olmaması ya da tekrar kullanılması)
+ 
+Session Testleri :
+	· Eski cookie’lerin invalidate edilmesindeki başarısızlık
+	· Login/logout/timeout’ta yeni cookie üretilmemesi 
+	· Sonlanmayan cookie boyutu 
+	· Multiple session’a izin verilmesi
+	· Kolaylıkla reverse edilebilen cookie’ler (sıklıkla base64 kullanılması)
