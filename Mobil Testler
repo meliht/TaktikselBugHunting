@@ -1,0 +1,17 @@
+Data Storage
+Mobil uygulamalarda kişisel bilgiler store edilirken encryption kullanılmaması durumu sıklıkla karşılaşılır. 
+ 
+Encrypt Edilmemiş Kişisel Bilgilerin Olduğu Yaygın Yerler: 
+	· Telefon sistem log’ları (tüm uygulamalar için geçerli)
+	· Webkit cachke (cache.db)
+	· Plists, dbs, vb. 
+	· Binary’de hardcoded olması
+ 
+Tool: idb_tool
+https://github.com/dmayer/idb 
+Daniel Mayers’in aracı. iOS güvenlik testleri için en iyi araçlardan biridir. 
+
+-----------------------------------
+Log’lar
+ 
+Bruteforce’dan sonra Log’larada “Login Failed” ve “Successfull Attempt” ifadelerine bak. 
