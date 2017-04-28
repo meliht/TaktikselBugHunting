@@ -1,0 +1,18 @@
+Genelde “Gürültülü” Olarak Bilinenler:
+	· Content spoofing ya da HTML injection
+	· Referrer leakage
+	· Security headers
+	· Path disclosure
+	· Clickjacking
+	· ++
+ 
+Bunları cepte bulundurmak iyi olur, escalation için kullanılabilir. 
+-----------------------------------
+Eklenebilecekler
+ 
+	· More tooling to automate
+	· XXE and parser attacks
+	· XSRF
+	· Captcha bypass
+	· Detailed logic flaws
+	· More mobile
