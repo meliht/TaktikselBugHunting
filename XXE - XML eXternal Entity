@@ -1,0 +1,20 @@
+Core Idea: Trial & Error, find any XML upload request or any request which takes XML in input body. 
+
+Not very commonly we finds an application functionality which is dealing with XML inputs. But if we do, we might get lucky to find an XXE. 
+
+Here is how it works, if the XML is getting parsed by the application and the External entities in the DTD (Document Type Declaration) is resolved then it may lead to XXE. You can also try converting a JSON endpoint request to XML and try XML Injections. 
+
+XXE Tools - Testing & Exploitation
+
+As the vulnerability is in its early stages we do not have any specific tool that totally concentrate on finding or exploiting XXE, but as per automated scanning/finding we have Burp Scanner, other updated vulnerability scanner which are able to find XXE. 
+
+Simple Payload
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE foo [
+<!ELEMENT foo ANY >
+<!ENTITY xxe SYSTEM "file:///dev/random" >]><foo>&xxe;</foo>
+
+Exploitaiton
+
+Can be used to read system files + Other attacks SSRF is capable of. 
