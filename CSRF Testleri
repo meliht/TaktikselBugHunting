@@ -1,0 +1,34 @@
+TLDR; hassas fonksiyonları bulup CSRF girişimi yap. Bu işi yapmak için Burp’s CSRF PoC’si hızlı ve kolaydır.  
+Bir çok sitede CSRF koruması var, onun için CSRF bypass teknikleri muhakkak denenmelidir. 
+ 
+Yaygın Bypass Teknikleri: 
+	· CSRF token’ı request’den remove et
+	· CSRF token parametre değerini remove et 
+	· CSRF parametre değerine bad control karakterleri ekle
+	· İkinci özdeş bir CSRF parametresi kullan
+	· POST’u GET’e değiştir 
+ 
+Tool: Burphy 
+https://github.com/nahamsec/burpy
+Debasish Mandal’ın yazdığı CSRF bypass tekniklerini otomatize etmeyi sağlana python aracıdır. 
+ 
+Adım 1: Burp logging’i aktif et. Websitesini tüm fonksiyonlarını çalıştıracak şekilde Burp ile crawl et. 
+Adım 2: Template oluştur.
+	· Base request oluştur
+	· Crafted request oluştur (request’den token remove edilmiş hali)
+ 
+Burp log’larındaki token olmayan sayfalara odaklan:
+http://github.com/arvinddoraiswamy/mywebappscripts/blob/master/BurpExtensions/csrf_token_detect.py
+ 
+CSRF İçin Yaygın Kritik Fonksiyonlar:
+	· Add/Upload file
+	· Email change
+	· Delete file
+	· Password change
+	· Transfer money / currency
+	· Profile edit
+	
+CSRF N/A Fonksiyonlar:
+	· Logout CSRF 
+	· Public Formlar 
+	· Değişiklik yapmayan formlar 
