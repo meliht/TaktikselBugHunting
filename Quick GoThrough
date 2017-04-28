@@ -1,0 +1,21 @@
+Kısa Zamanda Etkili Web Application Pentest Adımları 
+
+	1. Search, registration, contact, password reset ve comment form’larını ziyaret et ve bunlara manuel olarak polyglot string’leri uygula. 
+	2. Bu spesifik fonksiyonları Burp Suite’in built-in scanner’ı scan et. 
+	3. Cookie’yi kontrol et, log-out ol, tekrar cookie’yi kontrol et, login ol, tekrar cookie’yi kontrol et. Eski cookie’yi submit et, erişip erişemediğine bak.
+	4. Login, registration ve password reset’e user enumeration kontrollerini uygula.
+	5. Password reset yap 
+		a. password’ün plaintext gelip gelmediğine bak
+		b. URL bazlı token kullanılıp kullanılmadığına bak
+		c. tahmin edilebilir olup olmadığına bak
+		ç. birden fazla kez kullanılıp kullanılmadığına bak
+		d. otomatik olarak login yapıp yapmadığına bak. 
+	6. Security-sensitive fonksiyonları ya da dosyaları bul ve 
+		a. yetkisiz (non-auth) browsing’e (IDOR) zafiyetli olup olmadığına bak. 
+		b. kısıtlı yetkili (lowe-auth) browsing’e (IDOR) zafiyetli olup olmadığına bak.
+		c. CSRF’e zafiyetli olup olmadığına bak. 
+		ç. CSRF protection bypass’a zafiyetli olup olmadığına bak.
+		d. İşlemlerin HTTP üzerinden gerçekleşip gerçekleşmediğine bak.
+	7. Directory brutefoce yap. (SecLists’in top short list’ini kullanabilirsin)
+	8. Upload fonksiyonlarını code execute edebilen alternatif file type’ları (XSS, PHP/etc/etc) için kontrol et. 
+
