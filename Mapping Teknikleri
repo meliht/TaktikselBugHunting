@@ -1,0 +1,59 @@
+Mapping İpuçları: 
+	· Google
+	· *Smart* directory brute forcing
+		o RAFT listeler (SecList içinde var)
+		o SVN digger (SecList içinde var) à open-source uygulamalar için geçerli
+		o Git digger --> open-source uygulamalar için geçerli
+	· Platform tespiti
+		o Wapplyzer (Chrome) à websitelerde kullanılan teknolojileri tespit eder
+		o Builtwith (Chrome) à websitesinin hangi diller ile built edildiğini tespit eder 
+		o Retire.js (cmd-line/Burp) à kullanılan JavaScript kütüphanelerdeki bilinen zafiyetleri tespit eder 
+	· Yardımcı araçlar
+		o WPScan à black box Wordpress zafiyet taraması
+		o CMSmap à Wordpress, Joomla, Drupal gibi CMS’lerdeki açıkları otomatik olarak tarar ve tespit eder 
+ 
+Directory Brute Force Workflow 
+Burteforce yaptıktan sonra, deny edilen ya da authentication require edilen status kodlarına bakarız ve sonra misconfigured access control için test etmek üzere listeyi append ederiz. 
+ 
+Örnekler:
+	GET http://www.acme.com - 200
+	GET http://www.acme.com/backlog/ - 404 
+	GET http://www.acme.com/controlpanel/ - 401 hmm.. Ok
+	GET http://www.acme.com/controlpanel/[bruteforce_here_now]
+ 
+OSINT’ler Kullanarak Mapping/Vulnerability Discovery 
+ 
+Önceki/Mevcut Yaşanmış Problemleri Bulmak İçin:
+Problemler zaten raporlanmış olabilir ancak bu açıkların bölgesini ve injection tipini sonraki injection’lar ya da filter bypass için kullanabiliriz. 
+	· Xssed.com --> xss attack information (2012'den sonra güncelleme yok) 
+	· Reddit XSS - /r/xss 
+	· Punksider --> global web application vulnerability search engine
+	· Xss.cx -> Exploit Search, Anti-Phishing, Tombstones
+	· Xssposed.org -> openbugbounty.org -> XSS vulnerability’leri saldırıları
+	· Twitter search 
+	· ++
+ 
+Tool/Project: Maps
+http://github.com/bugcrowdlabs/maps -> private yapılmış sanırım erişemedim. Nahamsec yapmış. 
+ 
+	· 250+ bounty programs
+	· Craw
+	· DNS info + bruteforce
+	· Bounty metadata (link’ler, reward’lar, scope)
+	· API -> Intrigue 
+ 
+Using the Maps Project: Crawling
+Using + Ruby + Anemone + JSON + GREP 
+$ cat test_target_json.txt | grep redirect
+ 
+https://test_target/redirect/?url=http://twitter.com/... 
+https://test_target/redirect/?url=http://facebook.com/…  
+https://test_target/redirect/?url=http://pinterest.com/…  
+ 
+Tool: Intrigue
+http://github.com/intrigueio/intrigue-core
+Kolay engtegre edilebilen OSINT framework’udur. Foca ve Maltego’nun open-source alternatifidir. Aşağıdaki gibi özellikleri vardır. 
+	· DNS subdomain bruteforce
+	· Web spider
+	· Nmap scan
+	· Etc. 
